@@ -1,10 +1,9 @@
 package com.dh.final_project_backend.entity;
 
 public class Domicilio {
-
     private Integer id;
     private String calle;
-    private String numero;
+    private Integer numero;
     private String provincia;
     private String pais;
     private Integer codigoPostal;
@@ -12,7 +11,7 @@ public class Domicilio {
     public Domicilio() {
     }
 
-    public Domicilio(String calle, String numero, String provincia, String pais, Integer codigoPostal) {
+    public Domicilio(String calle, Integer numero, String provincia, String pais, Integer codigoPostal) {
         this.calle = calle;
         this.numero = numero;
         this.provincia = provincia;
@@ -20,7 +19,7 @@ public class Domicilio {
         this.codigoPostal = codigoPostal;
     }
 
-    public Domicilio(Integer id, String calle, String numero, String provincia, String pais, Integer codigoPostal) {
+    public Domicilio(Integer id, String calle, Integer numero, String provincia, String pais, Integer codigoPostal) {
         this.id = id;
         this.calle = calle;
         this.numero = numero;
@@ -45,11 +44,11 @@ public class Domicilio {
         this.calle = calle;
     }
 
-    public String getNumero() {
+    public Integer getNumero() {
         return numero;
     }
 
-    public void setNumero(String numero) {
+    public void setNumero(Integer numero) {
         this.numero = numero;
     }
 

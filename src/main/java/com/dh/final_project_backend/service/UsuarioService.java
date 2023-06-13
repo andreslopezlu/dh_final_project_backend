@@ -27,7 +27,7 @@ public class UsuarioService {
     }
 
     public Usuario buscarUsuario (Integer id){
-        usuarioDao.buscar(id);
+        return usuarioDao.buscar(id);
     }
 
     public Usuario actualizarUsuario (Usuario usuario){
@@ -40,10 +40,6 @@ public class UsuarioService {
 
     public List<Usuario> buscarTodosUsuarios(){
         return usuarioDao.buscarTodos();
-    }
-
-    public void mostrarTodos(){
-        usuarioDao.mostrarTodos();
     }
 
 }

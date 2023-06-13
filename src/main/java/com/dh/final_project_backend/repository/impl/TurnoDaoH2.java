@@ -33,8 +33,4 @@ public class TurnoDaoH2 implements IDao<Turno> {
         return null;
     }
 
-    @Override
-    public void mostrarTodos() {
-
-    }
 }

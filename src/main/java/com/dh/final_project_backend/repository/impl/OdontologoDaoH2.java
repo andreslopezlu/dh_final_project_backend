@@ -33,8 +33,4 @@ public class OdontologoDaoH2 implements IDao<Odontologo> {
         return null;
     }
 
-    @Override
-    public void mostrarTodos() {
-
-    }
 }

@@ -3,11 +3,13 @@ package com.dh.final_project_backend.repository.configuration;
 import com.dh.final_project_backend.repository.impl.DomicilioDaoH2;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.context.annotation.Configuration;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+@Configuration
 public class ConnectionJDBC {
     private final static Logger logger = LogManager.getLogger(DomicilioDaoH2.class);
 
@@ -18,7 +20,7 @@ public class ConnectionJDBC {
 
     public ConnectionJDBC() {
         this.DB_DRIVER = "org.h2.Driver";
-        this.DB_URL = "jdbc:h2:tcp://localhost/~/test;INIT=RUNSCRIPT FROM 'create.sql'";
+        this.DB_URL = "jdbc:h2:tcp://localhost/~/test;INIT=RUNSCRIPT FROM '/Users/andreslopezlu/Library/Mobile Documents/com~apple~CloudDocs/Documents/dh_tech_developer/dh/8_backend1/scripts/trabajo_integrador/create.sql'";
         this.DB_USER = "sa";
         this.DB_PASSWORD = "";
     }

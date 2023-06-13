@@ -35,8 +35,4 @@ public class UsuarioDaoH2 implements IDao<Usuario> {
         return null;
     }
 
-    @Override
-    public void mostrarTodos() {
-
-    }
 }

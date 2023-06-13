@@ -30,7 +30,7 @@ public class TurnoService {
     public Turno buscarTurno (Integer id){
         return turnoDao.buscar(id);
     }
-    ``
+
     public Turno actualizarTurno (Turno turno){
         return turnoDao.actualizar(turno);
     }
@@ -41,10 +41,6 @@ public class TurnoService {
 
     public List<Turno> buscarTodosTurnos(){
         return turnoDao.buscarTodos();
-    }
-
-    public void mostrarTodosTurnos(){
-        turnoDao.mostrarTodos();
     }
 
 }

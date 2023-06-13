@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +17,8 @@ public class DomicilioDaoH2 implements IDao<Domicilio> {
     private final static Logger logger = LogManager.getLogger(DomicilioDaoH2.class);
     @Autowired
     private ConnectionJDBC connectionJDBC;
-    public DomicilioDaoH2() {
+    public DomicilioDaoH2(ConnectionJDBC connectionJDBC) {
+        this.connectionJDBC = connectionJDBC;
     }
 
     @Override
@@ -148,13 +148,13 @@ public class DomicilioDaoH2 implements IDao<Domicilio> {
 
             connection.setAutoCommit(false);
 
-            PreparedStatement ps = connection.prepareStatement(update_sql);
+            ps = connection.prepareStatement(update_sql);
             ps.setString(1,domicilio.getCalle());
             ps.setInt(2,domicilio.getNumero());
             ps.setString(3, domicilio.getProvincia());
             ps.setString(4, domicilio.getPais());
-            ps.setString(5, domicilio.getProvincia());
-            ps.setInt(5, domicilio.getId());
+            ps.setInt(5, domicilio.getCodigoPostal());
+            ps.setInt(6, domicilio.getId());
 
             ps.executeUpdate();
 
@@ -196,14 +196,14 @@ public class DomicilioDaoH2 implements IDao<Domicilio> {
         try{
             connection = connectionJDBC.connectToDB();
 
-            String delete_sql = "SELECT * FROM DOMICILIOS WHERE ID=?";
+            String delete_sql = "DELETE FROM DOMICILIOS WHERE ID=?";
 
             connection.setAutoCommit(false);
 
             ps = connection.prepareStatement(delete_sql);
             ps.setInt(1, id);
 
-            ResultSet rs = ps.executeQuery();
+            ps.executeUpdate();
 
             connection.commit();
             connection.setAutoCommit(true);
@@ -238,7 +238,7 @@ public class DomicilioDaoH2 implements IDao<Domicilio> {
         Connection connection = null;
         PreparedStatement ps = null;
         Domicilio domicilio = null;
-        List<Domicilio> domicilios = new ArrayList<Domicilio>();
+        List<Domicilio> domicilios = new ArrayList<>();
 
         try{
             connection = connectionJDBC.connectToDB();
@@ -293,52 +293,55 @@ public class DomicilioDaoH2 implements IDao<Domicilio> {
         return domicilios;
     }
 
-    @Override
-    public void mostrarTodos() {
-        logger.info("Mostrando domicilios...");
-        Connection connection = null;
-        PreparedStatement ps = null;
+//    Este metodo se deja como deprecado, porque lo que hace es mostrar por pantalla todos los objetos de la tabla.
+//    Se deja aqui la implementacion, pero en el resto de capas se elimina su implementacion o uso.
 
-        try{
-            connection = connectionJDBC.connectToDB();
-
-            String select_all_sql = "SELECT * FROM DOMICILIOS";
-
-            connection.setAutoCommit(false);
-
-            ps = connection.prepareStatement(select_all_sql);
-
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()){
-                System.out.println(rs.getInt(1) + ";" + rs.getString(2) + ";" + rs.getInt(3) + ";" + rs.getString(4) + ";" + rs.getString(5) + ";" + rs.getInt(6));
-            }
-
-            connection.commit();
-            connection.setAutoCommit(true);
-
-            ps.close();
-
-
-        } catch (SQLException e){
-            logger.info("Se produjo una excepción: SQLException");
-            e.printStackTrace();
-            try {
-                connection.rollback();
-            } catch (SQLException ex) {
-                logger.info("Se produjo una excepción: SQLException");
-                e.printStackTrace();
-            }
-        } finally {
-            try{
-                assert connection != null;
-                connection.close();
-            } catch (SQLException e) {
-                logger.info("No se pudo cerrar la conexión con la DB");
-                e.printStackTrace();
-            }
-        }
-        logger.info("Domicilios encontrados...");
-        System.out.println("Domicilios encontrados...");
-    }
+//    @Override
+//    public void mostrarTodos() {
+//        logger.info("Mostrando domicilios...");
+//        Connection connection = null;
+//        PreparedStatement ps = null;
+//
+//        try{
+//            connection = connectionJDBC.connectToDB();
+//
+//            String select_all_sql = "SELECT * FROM DOMICILIOS";
+//
+//            connection.setAutoCommit(false);
+//
+//            ps = connection.prepareStatement(select_all_sql);
+//
+//            ResultSet rs = ps.executeQuery();
+//
+//            while (rs.next()){
+//                System.out.println(rs.getInt(1) + ";" + rs.getString(2) + ";" + rs.getInt(3) + ";" + rs.getString(4) + ";" + rs.getString(5) + ";" + rs.getInt(6));
+//            }
+//
+//            connection.commit();
+//            connection.setAutoCommit(true);
+//
+//            ps.close();
+//
+//
+//        } catch (SQLException e){
+//            logger.info("Se produjo una excepción: SQLException");
+//            e.printStackTrace();
+//            try {
+//                connection.rollback();
+//            } catch (SQLException ex) {
+//                logger.info("Se produjo una excepción: SQLException");
+//                e.printStackTrace();
+//            }
+//        } finally {
+//            try{
+//                assert connection != null;
+//                connection.close();
+//            } catch (SQLException e) {
+//                logger.info("No se pudo cerrar la conexión con la DB");
+//                e.printStackTrace();
+//            }
+//        }
+//        logger.info("Domicilios encontrados...");
+//        System.out.println("Domicilios encontrados...");
+//    }
 }

@@ -9,6 +9,5 @@ public interface IDao<T> {
     public T actualizar (T t);
     public void eliminar (Integer id);
     public List<T> buscarTodos();
-    public void mostrarTodos();
 
 }

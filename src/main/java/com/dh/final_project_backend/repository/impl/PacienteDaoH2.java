@@ -33,8 +33,4 @@ public class PacienteDaoH2 implements IDao<Paciente> {
         return null;
     }
 
-    @Override
-    public void mostrarTodos() {
-
-    }
 }

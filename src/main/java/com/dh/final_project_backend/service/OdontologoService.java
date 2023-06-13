@@ -42,8 +42,4 @@ public class OdontologoService {
         return odontologoDao.buscarTodos();
     }
 
-    public void mostratTodosOdontologos(){
-        odontologoDao.mostrarTodos();
-    }
-
 }

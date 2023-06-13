@@ -43,8 +43,4 @@ public class PacienteService {
         return pacienteDao.buscarTodos();
     }
 
-    public void mostrarTodosPacientes(){
-        pacienteDao.mostrarTodos();
-    }
-
 }

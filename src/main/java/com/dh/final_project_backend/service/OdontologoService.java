@@ -11,7 +11,8 @@ public class OdontologoService {
 
     private IDao<Odontologo> odontologoDao;
 
-    public OdontologoService() {
+    public OdontologoService(IDao<Odontologo> odontologoDao) {
+        this.odontologoDao = odontologoDao;
     }
 
     public IDao<Odontologo> getOdontologoDao() {
@@ -22,23 +23,23 @@ public class OdontologoService {
         this.odontologoDao = odontologoDao;
     }
 
-    public Odontologo guardarOdontologo(Odontologo odontologo){
+    public Odontologo guardar(Odontologo odontologo){
         return odontologoDao.guardar(odontologo);
     }
 
-    public Odontologo buscarOdontologo(Integer id){
+    public Odontologo buscar(Integer id){
         return odontologoDao.buscar(id);
     }
 
-    public Odontologo actualizarOdontologo (Odontologo odontologo){
+    public Odontologo actualizar(Odontologo odontologo){
         return odontologoDao.actualizar(odontologo);
     }
 
-    public void eliminarOdontologo (Integer id){
+    public void eliminar(Integer id){
         odontologoDao.eliminar(id);
     }
 
-    public List<Odontologo> buscarTodosOdontologos(){
+    public List<Odontologo> buscarTodos(){
         return odontologoDao.buscarTodos();
     }
 

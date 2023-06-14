@@ -10,7 +10,6 @@ public class Paciente {
     private Domicilio domicilio;
     private Integer dni;
     private LocalDate fechaAlta;
-
     private Turno turno;
 
 

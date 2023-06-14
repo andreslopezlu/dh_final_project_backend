@@ -1,6 +1,5 @@
 package com.dh.final_project_backend.repository.configuration;
 
-import com.dh.final_project_backend.repository.impl.DomicilioDaoH2;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +10,7 @@ import java.sql.SQLException;
 
 @Configuration
 public class ConnectionJDBC {
-    private final static Logger logger = LogManager.getLogger(DomicilioDaoH2.class);
+    private final static Logger logger = LogManager.getLogger(ConnectionJDBC.class);
 
     private String DB_DRIVER;
     private String DB_URL;

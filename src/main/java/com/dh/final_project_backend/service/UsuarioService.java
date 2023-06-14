@@ -11,7 +11,8 @@ public class UsuarioService {
 
     private IDao<Usuario> usuarioDao;
 
-    public UsuarioService() {
+    public UsuarioService(IDao<Usuario> usuarioDao) {
+        this.usuarioDao = usuarioDao;
     }
 
     public IDao<Usuario> getUsuarioDao() {
@@ -22,23 +23,23 @@ public class UsuarioService {
         this.usuarioDao = usuarioDao;
     }
 
-    public Usuario guardarUsuario(Usuario usuario){
+    public Usuario guardar(Usuario usuario){
         return usuarioDao.guardar(usuario);
     }
 
-    public Usuario buscarUsuario (Integer id){
+    public Usuario buscar(Integer id){
         return usuarioDao.buscar(id);
     }
 
-    public Usuario actualizarUsuario (Usuario usuario){
+    public Usuario actualizar(Usuario usuario){
         return usuarioDao.actualizar(usuario);
     }
 
-    public void eliminarUsuario (Integer id){
+    public void eliminar(Integer id){
         usuarioDao.eliminar(id);
     }
 
-    public List<Usuario> buscarTodosUsuarios(){
+    public List<Usuario> buscarTodos(){
         return usuarioDao.buscarTodos();
     }
 

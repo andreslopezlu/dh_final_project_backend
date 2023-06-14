@@ -188,8 +188,7 @@ public class DomicilioDaoH2 implements IDao<Domicilio> {
 
     @Override
     public void eliminar(Integer id) {
-
-        logger.info("Buscando domicilio con id: " + id);
+        logger.info("Eliminando domicilio con id: " + id);
         Connection connection = null;
         PreparedStatement ps = null;
 

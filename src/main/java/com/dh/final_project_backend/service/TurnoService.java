@@ -11,7 +11,8 @@ public class TurnoService {
 
     private IDao<Turno> turnoDao;
 
-    public TurnoService() {
+    public TurnoService(IDao<Turno> turnoDao) {
+        this.turnoDao = turnoDao;
     }
 
     public IDao<Turno> getTurnoDao() {
@@ -23,23 +24,23 @@ public class TurnoService {
     }
 
 
-    public Turno guardarTurno(Turno turno){
+    public Turno guardar(Turno turno){
         return turnoDao.guardar(turno);
     }
 
-    public Turno buscarTurno (Integer id){
+    public Turno buscar(Integer id){
         return turnoDao.buscar(id);
     }
 
-    public Turno actualizarTurno (Turno turno){
+    public Turno actualizar(Turno turno){
         return turnoDao.actualizar(turno);
     }
 
-    public void eliminarTurno (Integer id){
+    public void eliminar(Integer id){
         turnoDao.eliminar(id);
     }
 
-    public List<Turno> buscarTodosTurnos(){
+    public List<Turno> buscarTodos(){
         return turnoDao.buscarTodos();
     }
 

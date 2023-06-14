@@ -11,7 +11,8 @@ public class PacienteService {
 
     private IDao<Paciente> pacienteDao;
 
-    public PacienteService() {
+    public PacienteService(IDao<Paciente> pacienteDao) {
+        this.pacienteDao = pacienteDao;
     }
 
     public IDao<Paciente> getPacientDao() {
@@ -22,24 +23,24 @@ public class PacienteService {
         this.pacienteDao = pacientDao;
     }
 
-    public Paciente guardarPaciente(Paciente paciente){
+    public Paciente guardar(Paciente paciente){
         return pacienteDao.guardar(paciente);
     }
 
-    public Paciente buscarPaciente (Integer id){
+    public Paciente buscar(Integer id){
         return pacienteDao.buscar(id);
     }
 
-    public Paciente actualizarPaciente (Paciente paciente){
+    public Paciente actualizar(Paciente paciente){
         return pacienteDao.actualizar(paciente);
     }
 
 
-    public void eliminarPaciente (Integer id){
+    public void eliminar(Integer id){
         pacienteDao.eliminar(id);
     }
 
-    public List<Paciente> buscarTodosPacientes(){
+    public List<Paciente> buscarTodos(){
         return pacienteDao.buscarTodos();
     }
 

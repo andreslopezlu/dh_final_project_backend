@@ -1,90 +1,49 @@
 package com.dh.final_project_backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+@Entity
+@Table(name="Domicilios")
+@Getter
+@Setter
+@ToString
 public class Domicilio {
-    private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name="id", nullable=false)
+    private Long id;
     private String calle;
     private Integer numero;
     private String provincia;
     private String pais;
     private Integer codigoPostal;
 
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "domicilio")
+    @JsonIgnore
+    private Paciente paciente;
+
     public Domicilio() {
     }
 
-    public Domicilio(String calle, Integer numero, String provincia, String pais, Integer codigoPostal) {
+    public Domicilio(String calle, Integer numero, String provincia, String pais, Integer codigoPostal, Paciente paciente) {
         this.calle = calle;
         this.numero = numero;
         this.provincia = provincia;
         this.pais = pais;
         this.codigoPostal = codigoPostal;
+        this.paciente = paciente;
     }
 
-    public Domicilio(Integer id, String calle, Integer numero, String provincia, String pais, Integer codigoPostal) {
+    public Domicilio(Long id, String calle, Integer numero, String provincia, String pais, Integer codigoPostal, Paciente paciente) {
         this.id = id;
         this.calle = calle;
         this.numero = numero;
         this.provincia = provincia;
         this.pais = pais;
         this.codigoPostal = codigoPostal;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getCalle() {
-        return calle;
-    }
-
-    public void setCalle(String calle) {
-        this.calle = calle;
-    }
-
-    public Integer getNumero() {
-        return numero;
-    }
-
-    public void setNumero(Integer numero) {
-        this.numero = numero;
-    }
-
-    public String getProvincia() {
-        return provincia;
-    }
-
-    public void setProvincia(String provincia) {
-        this.provincia = provincia;
-    }
-
-    public String getPais() {
-        return pais;
-    }
-
-    public void setPais(String pais) {
-        this.pais = pais;
-    }
-
-    public Integer getCodigoPostal() {
-        return codigoPostal;
-    }
-
-    public void setCodigoPostal(Integer codigoPostal) {
-        this.codigoPostal = codigoPostal;
-    }
-
-    @Override
-    public String toString() {
-        return "Domicilio{" +
-                "id=" + id +
-                ", calle='" + calle + '\'' +
-                ", numero='" + numero + '\'' +
-                ", provincia='" + provincia + '\'' +
-                ", pais='" + pais + '\'' +
-                ", codigoPostal=" + codigoPostal +
-                '}';
+        this.paciente = paciente;
     }
 }

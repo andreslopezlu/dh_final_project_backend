@@ -1,56 +1,48 @@
 package com.dh.final_project_backend.controller;
 
 import com.dh.final_project_backend.entity.Domicilio;
-import com.dh.final_project_backend.service.DomicilioService;
+import com.dh.final_project_backend.entity.DomicilioDTO;
+import com.dh.final_project_backend.service.IDomicilioService;
+import com.dh.final_project_backend.service.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/final/domicilios")
 public class DomicilioController {
 
     @Autowired
-    DomicilioService domicilioService;
+    IDomicilioService domicilioService;
+
+    @Autowired
+    PacienteService pacienteService;
 
     @PostMapping("/post")
-    public ResponseEntity<Domicilio> guardar(@RequestBody Domicilio domicilio){
-        return ResponseEntity.ok(domicilioService.guardar(domicilio));
+    public ResponseEntity<Domicilio> guardar(@RequestBody DomicilioDTO domicilioDTO){
+        return ResponseEntity.ok(domicilioService.guardar(domicilioDTO));
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<Domicilio> buscar(@PathVariable Integer id){
+    public ResponseEntity<DomicilioDTO> buscar(@PathVariable Long id){
         return ResponseEntity.ok(domicilioService.buscar(id));
     }
 
     @PutMapping("/put")
-    public ResponseEntity<Domicilio> actualizar(@RequestBody Domicilio domicilio){
-        ResponseEntity<Domicilio> response = null;
-        if(domicilio.getId() != null){
-            response = ResponseEntity.ok(domicilioService.actualizar(domicilio));
-        } else {
-            response = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-        return response;
+    public ResponseEntity<Domicilio> actualizar(@RequestBody DomicilioDTO domicilioDTO){
+        return ResponseEntity.ok(domicilioService.actualizar(domicilioDTO));
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> eliminar(@PathVariable Integer id) {
-        ResponseEntity<String> response = null;
-        if(domicilioService.buscar(id).getId() != null){
-            domicilioService.eliminar(id);
-            response = ResponseEntity.status(HttpStatus.NO_CONTENT).body("Eliminado");
-        } else {
-            response = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-        return response;
+    public ResponseEntity<String> eliminar(@PathVariable Long id) {
+        domicilioService.eliminar(id);
+        return ResponseEntity.ok("ok");
     }
 
     @GetMapping("/get/all")
-    public ResponseEntity<List<Domicilio>> buscarTodos(){
+    public ResponseEntity<Set<DomicilioDTO>> buscarTodos(){
         return ResponseEntity.ok(domicilioService.buscarTodos());
     }
 }

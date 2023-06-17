@@ -1,8 +1,21 @@
 package com.dh.final_project_backend.entity;
 
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Entity
+@Table(name="Usuarios")
+@Getter
+@Setter
+@ToString
 public class Usuario {
 
-    private Integer id;
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    @Column(name="id", nullable = false)
+    private Long id;
     private String usuario;
     private String password;
     private String rol;
@@ -16,52 +29,10 @@ public class Usuario {
         this.rol = rol;
     }
 
-    public Usuario(Integer id, String usuario, String password, String rol) {
+    public Usuario(Long id, String usuario, String password, String rol) {
         this.id = id;
         this.usuario = usuario;
         this.password = password;
         this.rol = rol;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getRol() {
-        return rol;
-    }
-
-    public void setRol(String rol) {
-        this.rol = rol;
-    }
-
-    @Override
-    public String toString() {
-        return "Usuario{" +
-                "id=" + id +
-                ", usuario='" + usuario + '\'' +
-                ", password='" + password + '\'' +
-                ", rol='" + rol + '\'' +
-                '}';
     }
 }

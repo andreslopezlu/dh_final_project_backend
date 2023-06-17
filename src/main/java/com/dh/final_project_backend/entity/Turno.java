@@ -1,73 +1,48 @@
 package com.dh.final_project_backend.entity;
 
-import java.time.LocalDate;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
+@Entity
+@Table(name="Turnos")
+@Getter
+@Setter
+@ToString
 public class Turno {
 
-    private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name="id", nullable=false)
+    private Long id;
+    @ManyToOne
+    @JoinColumn(name="paciente_id", nullable = false)
     private Paciente paciente;
+    @ManyToOne
+    @JoinColumn(name="odontologo_id", nullable = false)
     private Odontologo odontologo;
     private LocalDate fecha;
+    private LocalTime hora;
 
     public Turno() {
     }
 
-    public Turno(Paciente paciente, Odontologo odontologo, LocalDate fecha) {
+    public Turno(Paciente paciente, Odontologo odontologo, LocalDate fecha, LocalTime hora) {
         this.paciente = paciente;
         this.odontologo = odontologo;
         this.fecha = fecha;
+        this.hora = hora;
     }
 
-    public Turno(Integer id, Paciente paciente, Odontologo odontologo, LocalDate fecha) {
+    public Turno(Long id, Paciente paciente, Odontologo odontologo, LocalDate fecha, LocalTime hora) {
         this.id = id;
         this.paciente = paciente;
         this.odontologo = odontologo;
         this.fecha = fecha;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Paciente getPaciente() {
-        return paciente;
-    }
-
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
-    }
-
-    public Odontologo getOdontologo() {
-        return odontologo;
-    }
-
-    public void setOdontologo(Odontologo odontologo) {
-        this.odontologo = odontologo;
-    }
-
-    public LocalDate getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
-    }
-
-    public void registrarTurno(){
-
-    }
-
-    @Override
-    public String toString() {
-        return "Turno{" +
-                "id=" + id +
-                ", paciente=" + paciente +
-                ", odontologo=" + odontologo +
-                ", fecha=" + fecha +
-                '}';
+        this.hora = hora;
     }
 }

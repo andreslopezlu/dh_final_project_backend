@@ -1,47 +1,63 @@
 package com.dh.final_project_backend.service;
 
 import com.dh.final_project_backend.entity.Turno;
-import com.dh.final_project_backend.repository.IDao;
+import com.dh.final_project_backend.entity.TurnoDTO;
+import com.dh.final_project_backend.repository.ITurnoRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @Service
-public class TurnoService {
+public class TurnoService implements ITurnoService{
 
-    private IDao<Turno> turnoDao;
+    @Autowired
+    ITurnoRepository turnoRepository;
 
-    public TurnoService(IDao<Turno> turnoDao) {
-        this.turnoDao = turnoDao;
+    @Autowired
+    ObjectMapper mapper;
+
+    @Override
+    public Turno guardar(TurnoDTO turnoDTO){
+        Turno turno = mapper.convertValue(turnoDTO, Turno.class);
+        return turnoRepository.save(turno);
     }
 
-    public IDao<Turno> getTurnoDao() {
-        return turnoDao;
+    @Override
+    public TurnoDTO buscar(Long id){
+        Optional<Turno> turno = turnoRepository.findById(id);
+        TurnoDTO turnoDTO = null;
+        if(turno.isPresent()){
+            turnoDTO = mapper.convertValue(turno, TurnoDTO.class);
+        }
+        return turnoDTO;
     }
 
-    public void setTurnoDao(IDao<Turno> turnoDao) {
-        this.turnoDao = turnoDao;
+    @Override
+    public Turno actualizar(TurnoDTO turnoDTO){
+        mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+        Turno turno = mapper.convertValue(turnoDTO, Turno.class);
+        return turnoRepository.save(turno);
     }
 
-
-    public Turno guardar(Turno turno){
-        return turnoDao.guardar(turno);
+    @Override
+    public void eliminar(Long id){
+        turnoRepository.deleteById(id);
     }
 
-    public Turno buscar(Integer id){
-        return turnoDao.buscar(id);
-    }
-
-    public Turno actualizar(Turno turno){
-        return turnoDao.actualizar(turno);
-    }
-
-    public void eliminar(Integer id){
-        turnoDao.eliminar(id);
-    }
-
-    public List<Turno> buscarTodos(){
-        return turnoDao.buscarTodos();
+    @Override
+    public Set<TurnoDTO> buscarTodos(){
+        List<Turno> turnos = turnoRepository.findAll();
+        Set<TurnoDTO> turnosDTO = new HashSet<>();
+        for(Turno turno : turnos){
+            turnosDTO.add(mapper.convertValue(turno, TurnoDTO.class));
+        }
+        return turnosDTO;
     }
 
 }

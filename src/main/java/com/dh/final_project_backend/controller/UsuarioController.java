@@ -1,58 +1,45 @@
 package com.dh.final_project_backend.controller;
 
 import com.dh.final_project_backend.entity.Usuario;
-import com.dh.final_project_backend.service.UsuarioService;
+import com.dh.final_project_backend.entity.UsuarioDTO;
+import com.dh.final_project_backend.service.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/final/usuarios")
 public class UsuarioController {
 
     @Autowired
-    UsuarioService usuarioService;
+    IUsuarioService usuarioService;
 
     @PostMapping("/post")
-    public ResponseEntity<Usuario> guardar(@RequestBody Usuario usuario){
-        return ResponseEntity.ok(usuarioService.guardar(usuario));
+    public ResponseEntity<Usuario> guardar(@RequestBody UsuarioDTO usuarioDTO){
+        return ResponseEntity.ok(usuarioService.guardar(usuarioDTO));
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<Usuario> buscar(@PathVariable Integer id){
+    public ResponseEntity<UsuarioDTO> buscar(@PathVariable Long id){
         return ResponseEntity.ok(usuarioService.buscar(id));
     }
 
     @PutMapping("/put")
-    public ResponseEntity<Usuario> actualizar(@RequestBody Usuario usuario){
-        ResponseEntity<Usuario> response = null;
-        if(usuario.getId() != null){
-            response = ResponseEntity.ok(usuarioService.actualizar(usuario));
-        } else {
-            response = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-        return response;
+    public ResponseEntity<Usuario> actualizar(@RequestBody UsuarioDTO usuarioDTO){
+        return ResponseEntity.ok(usuarioService.actualizar(usuarioDTO));
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> eliminar(@PathVariable Integer id) {
-        ResponseEntity<String> response = null;
-        if(usuarioService.buscar(id).getId() != null){
-            usuarioService.eliminar(id);
-            response = ResponseEntity.status(HttpStatus.NO_CONTENT).body("Eliminado");
-        } else {
-            response = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-        return response;
+    public ResponseEntity<String> eliminar(@PathVariable Long id) {
+        usuarioService.eliminar(id);
+        return ResponseEntity.ok("ok");
     }
 
     @GetMapping("/get/all")
-    public ResponseEntity<List<Usuario>> buscarTodos(){
+    public ResponseEntity<Set<UsuarioDTO>> buscarTodos(){
         return ResponseEntity.ok(usuarioService.buscarTodos());
     }
-
 
 }

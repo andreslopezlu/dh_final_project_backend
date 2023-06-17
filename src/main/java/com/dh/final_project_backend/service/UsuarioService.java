@@ -1,46 +1,61 @@
 package com.dh.final_project_backend.service;
 
 import com.dh.final_project_backend.entity.Usuario;
-import com.dh.final_project_backend.repository.IDao;
+import com.dh.final_project_backend.entity.UsuarioDTO;
+import com.dh.final_project_backend.repository.IUsuarioRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @Service
-public class UsuarioService {
+public class UsuarioService implements IUsuarioService{
 
-    private IDao<Usuario> usuarioDao;
+    @Autowired
+    IUsuarioRepository usuarioRepository;
 
-    public UsuarioService(IDao<Usuario> usuarioDao) {
-        this.usuarioDao = usuarioDao;
+    @Autowired
+    ObjectMapper mapper;
+
+    @Override
+    public Usuario guardar(UsuarioDTO usuarioDTO){
+        Usuario usuario = mapper.convertValue(usuarioDTO, Usuario.class);
+        return usuarioRepository.save(usuario);
     }
 
-    public IDao<Usuario> getUsuarioDao() {
-        return usuarioDao;
+    @Override
+    public UsuarioDTO buscar(Long id){
+        Optional<Usuario> usuario = usuarioRepository.findById(id);
+        UsuarioDTO usuarioDTO = null;
+        if(usuario.isPresent()){
+            usuarioDTO = mapper.convertValue(usuario, UsuarioDTO.class);
+        }
+        return usuarioDTO;
     }
 
-    public void setUsuarioDao(IDao<Usuario> usuarioDao) {
-        this.usuarioDao = usuarioDao;
+    @Override
+    public Usuario actualizar(UsuarioDTO usuarioDTO){
+        Usuario usuario = mapper.convertValue(usuarioDTO, Usuario.class);
+        return usuarioRepository.save(usuario);
     }
 
-    public Usuario guardar(Usuario usuario){
-        return usuarioDao.guardar(usuario);
+    @Override
+    public void eliminar(Long id){
+        usuarioRepository.deleteById(id);
     }
 
-    public Usuario buscar(Integer id){
-        return usuarioDao.buscar(id);
-    }
-
-    public Usuario actualizar(Usuario usuario){
-        return usuarioDao.actualizar(usuario);
-    }
-
-    public void eliminar(Integer id){
-        usuarioDao.eliminar(id);
-    }
-
-    public List<Usuario> buscarTodos(){
-        return usuarioDao.buscarTodos();
+    @Override
+    public Set<UsuarioDTO> buscarTodos(){
+        List<Usuario> usuarios = usuarioRepository.findAll();
+        Set<UsuarioDTO> usuariosDTOS = new HashSet<>();
+        for(Usuario usuario : usuarios){
+            usuariosDTOS.add(mapper.convertValue(usuario, UsuarioDTO.class));
+        }
+        return usuariosDTOS;
     }
 
 }

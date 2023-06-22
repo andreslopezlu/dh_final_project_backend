@@ -32,7 +32,7 @@ public class OdontologoService implements IOdontologoService{
         Optional<Odontologo> odontologo = odontologoRepository.findById(id);
         OdontologoDTO odontologoDTO = null;
         if(odontologo.isPresent()){
-            odontologoDTO = mapper.convertValue(odontologo, OdontologoDTO.class);
+            odontologoDTO = mapper.convertValue(odontologo.get(), OdontologoDTO.class);
         }
         return odontologoDTO;
     }

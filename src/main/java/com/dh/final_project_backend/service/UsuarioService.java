@@ -32,7 +32,7 @@ public class UsuarioService implements IUsuarioService{
         Optional<Usuario> usuario = usuarioRepository.findById(id);
         UsuarioDTO usuarioDTO = null;
         if(usuario.isPresent()){
-            usuarioDTO = mapper.convertValue(usuario, UsuarioDTO.class);
+            usuarioDTO = mapper.convertValue(usuario.get(), UsuarioDTO.class);
         }
         return usuarioDTO;
     }

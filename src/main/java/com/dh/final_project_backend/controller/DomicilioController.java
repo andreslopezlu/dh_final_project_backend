@@ -38,7 +38,7 @@ public class DomicilioController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> eliminar(@PathVariable Long id) {
         domicilioService.eliminar(id);
-        return ResponseEntity.ok("ok");
+        return ResponseEntity.ok("{\"response\": \"ok\"}");
     }
 
     @GetMapping("/get/all")

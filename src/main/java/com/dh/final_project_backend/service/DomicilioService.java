@@ -32,7 +32,7 @@ public class DomicilioService implements IDomicilioService{
         Optional<Domicilio> domicilio = domicilioRepository.findById(id);
         DomicilioDTO domicilioDTO = null;
         if(domicilio.isPresent()){
-            domicilioDTO = mapper.convertValue(domicilio, DomicilioDTO.class);
+            domicilioDTO = mapper.convertValue(domicilio.get(), DomicilioDTO.class);
         }
         return domicilioDTO;
     }

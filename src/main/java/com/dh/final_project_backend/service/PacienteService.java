@@ -32,7 +32,7 @@ public class PacienteService implements IPacienteService{
         Optional<Paciente> paciente = pacienteRepository.findById(id);
         PacienteDTO pacienteDTO = null;
         if(paciente.isPresent()){
-            pacienteDTO = mapper.convertValue(paciente, PacienteDTO.class);
+            pacienteDTO = mapper.convertValue(paciente.get(), PacienteDTO.class);
         }
         return pacienteDTO;
     }

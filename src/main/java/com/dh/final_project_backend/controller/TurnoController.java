@@ -34,7 +34,7 @@ public class TurnoController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> eliminar(@PathVariable Long id) {
         turnoService.eliminar(id);
-        return ResponseEntity.ok("ok");
+        return ResponseEntity.ok("{\"response\": \"ok\"}");
     }
 
     @GetMapping("/get/all")

@@ -33,7 +33,7 @@ public class TurnoService implements ITurnoService{
         Optional<Turno> turno = turnoRepository.findById(id);
         TurnoDTO turnoDTO = null;
         if(turno.isPresent()){
-            turnoDTO = mapper.convertValue(turno, TurnoDTO.class);
+            turnoDTO = mapper.convertValue(turno.get(), TurnoDTO.class);
         }
         return turnoDTO;
     }

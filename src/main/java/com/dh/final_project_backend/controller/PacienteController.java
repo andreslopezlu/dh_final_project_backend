@@ -34,7 +34,7 @@ public class PacienteController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> eliminar(@PathVariable Long id) {
         pacienteService.eliminar(id);
-        return ResponseEntity.ok("ok");
+        return ResponseEntity.ok("{\"response\": \"ok\"}");
     }
 
     @GetMapping("/get/all")

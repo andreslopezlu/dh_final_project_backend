@@ -146,7 +146,7 @@ window.addEventListener("load", function(){
 
         dataFormulario.innerHTML = 
         `<section>
-        <p>Datos basicos</p>
+        <p>Datos básicos</p>
         <div>
             <label for="id">Id Paciente</label>
             <input type="text" name="id" id="id" autocomplete="off" readonly value=${data.id}>
@@ -181,7 +181,7 @@ window.addEventListener("load", function(){
             <input type="text" name="pais" id="pais" autocomplete="off" onsubmit="required()" placeholder="Col" value=${data.domicilio.pais}>
         </div>
         <div>
-            <label for="domicilio">Codigo postal</label>
+            <label for="domicilio">Código postal</label>
             <input type="text" name="codigoPostal" id="codigoPostal" autocomplete="off" onsubmit="required()" placeholder="110141" value=${data.domicilio.codigoPostal}>
         </div>
         <p>Otros datos</p>
@@ -210,7 +210,7 @@ window.addEventListener("load", function(){
 
                 if(formularioAgregar){
                     formularioAgregar.style.display = "none";
-                }
+                }                
 
                 let id = boton.getAttribute("id");
 
@@ -226,7 +226,23 @@ window.addEventListener("load", function(){
                     })
                     .then((data) => {
                         console.log(data);
-                        renderizarPaciente(data);
+
+                        let paciente = {
+                            id: data.id == null ? "" : data.id,
+                            nombre: data.nombre == null ? "" : data.nombre,
+                            apellido: data.apellido == null ? "" : data.apellido,
+                            dni: data.dni == null ? "" : data.dni,
+                            domicilio: {
+                                calle: data.domicilio.calle == null ? "" : data.domicilio.calle,
+                                numero: data.domicilio.numero == null ? "" : data.domicilio.numero,
+                                provincia: data.domicilio.provincia == null ? "" : data.domicilio.provincia,
+                                pais: data.domicilio.pais == null ? "" : data.domicilio.pais,
+                                codigoPostal: data.domicilio.codigoPostal == null ? "" : data.domicilio.codigoPostal,
+                            },
+                            fechaAlta: data.fechaAlta == null ? "" : data.fechaAlta
+                        }
+
+                        renderizarPaciente(paciente);
                         aceptarModificacionPaciente();
                     })
                     .catch((error) => {
@@ -277,7 +293,7 @@ window.addEventListener("load", function(){
         aceptarModificacion.addEventListener("click", (e) => {
 
             e.preventDefault();
-
+            
             let paciente = capturarModificacionPaciente();
 
             let endpointPutPaciente = "/final/pacientes/put";
@@ -297,6 +313,7 @@ window.addEventListener("load", function(){
                     .then((data) => {
                         console.log(data);
                         consultarPacientes();
+                        clearForm();
                     })
                     .catch((error) => {
                         console.error(error);
@@ -323,7 +340,7 @@ function renderizarFormularioNuevoPaciente(){
 
     dataFormulario.innerHTML = 
     `<section>
-    <p>Datos basicos</p>
+    <p>Datos básicos</p>
     <div>
         <label for="nombre">Nombre</label>
         <input type="text" name="nombre" id="nombre" autocomplete="off" onsubmit="required()" placeholder="Pepito">
@@ -354,7 +371,7 @@ function renderizarFormularioNuevoPaciente(){
         <input type="text" name="pais" id="pais" autocomplete="off" onsubmit="required()" placeholder="Col">
     </div>
     <div>
-        <label for="domicilio">Codigo postal</label>
+        <label for="domicilio">Código postal</label>
         <input type="text" name="codigoPostal" id="codigoPostal" autocomplete="off" onsubmit="required()" placeholder="110141">
     </div>
     <p>Otros datos</p>
@@ -433,6 +450,7 @@ function aceptarGuardarPaciente(){
 
         e.preventDefault();
 
+        clearForm();
         let paciente = capturarNuevoPaciente();
 
         let endpointPutPaciente = "/final/pacientes/post";
@@ -457,6 +475,19 @@ function aceptarGuardarPaciente(){
                     console.error(error);
                 })  
     })
+}
+
+// ----------------------------------------------------------------------------------------------------------------------- //
+
+
+function clearForm(){
+    
+    let inputs = document.querySelectorAll("input");
+
+    inputs.forEach(input => {
+        input.value = "";
+    })
+
 }
 
 // ----------------------------------------------------------------------------------------------------------------------- //

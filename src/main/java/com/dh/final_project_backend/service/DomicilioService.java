@@ -2,7 +2,7 @@ package com.dh.final_project_backend.service;
 
 import com.dh.final_project_backend.entity.Domicilio;
 import com.dh.final_project_backend.entity.DomicilioDTO;
-import com.dh.final_project_backend.repository.IDomicilioRepository;
+import com.dh.final_project_backend.repository.DomicilioRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ import java.util.Set;
 public class DomicilioService implements IDomicilioService{
 
     @Autowired
-    IDomicilioRepository domicilioRepository;
+    DomicilioRepository domicilioRepository;
 
     @Autowired
     ObjectMapper mapper;

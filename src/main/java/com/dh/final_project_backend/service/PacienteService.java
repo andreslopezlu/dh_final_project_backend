@@ -2,7 +2,7 @@ package com.dh.final_project_backend.service;
 
 import com.dh.final_project_backend.entity.Paciente;
 import com.dh.final_project_backend.entity.PacienteDTO;
-import com.dh.final_project_backend.repository.IPacienteRepository;
+import com.dh.final_project_backend.repository.PacienteRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ import java.util.Set;
 public class PacienteService implements IPacienteService{
 
     @Autowired
-    IPacienteRepository pacienteRepository;
+    PacienteRepository pacienteRepository;
 
     @Autowired
     ObjectMapper mapper;

@@ -10,6 +10,7 @@ com/dh/final_project_backend/service/TurnoService.class
 com/dh/final_project_backend/repository/IOdontologoRepository.class
 com/dh/final_project_backend/entity/PacienteDTO.class
 com/dh/final_project_backend/entity/DomicilioDTO.class
+com/dh/final_project_backend/security/SecurityConfig.class
 com/dh/final_project_backend/service/PacienteService.class
 com/dh/final_project_backend/repository/IDomicilioRepository.class
 com/dh/final_project_backend/exceptions/ErrorResponse$ValidationError.class

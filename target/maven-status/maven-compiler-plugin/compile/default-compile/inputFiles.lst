@@ -17,6 +17,7 @@
 /Users/andreslopezlu/Library/Mobile Documents/com~apple~CloudDocs/Documents/dh_tech_developer/dh/8_backend1/scripts/trabajo_integrador/src/main/java/com/dh/final_project_backend/service/IOdontologoService.java
 /Users/andreslopezlu/Library/Mobile Documents/com~apple~CloudDocs/Documents/dh_tech_developer/dh/8_backend1/scripts/trabajo_integrador/src/main/java/com/dh/final_project_backend/service/UsuarioService.java
 /Users/andreslopezlu/Library/Mobile Documents/com~apple~CloudDocs/Documents/dh_tech_developer/dh/8_backend1/scripts/trabajo_integrador/src/main/java/com/dh/final_project_backend/service/OdontologoService.java
+/Users/andreslopezlu/Library/Mobile Documents/com~apple~CloudDocs/Documents/dh_tech_developer/dh/8_backend1/scripts/trabajo_integrador/src/main/java/com/dh/final_project_backend/security/SecurityConfig.java
 /Users/andreslopezlu/Library/Mobile Documents/com~apple~CloudDocs/Documents/dh_tech_developer/dh/8_backend1/scripts/trabajo_integrador/src/main/java/com/dh/final_project_backend/controller/OdontologoController.java
 /Users/andreslopezlu/Library/Mobile Documents/com~apple~CloudDocs/Documents/dh_tech_developer/dh/8_backend1/scripts/trabajo_integrador/src/main/java/com/dh/final_project_backend/repository/IUsuarioRepository.java
 /Users/andreslopezlu/Library/Mobile Documents/com~apple~CloudDocs/Documents/dh_tech_developer/dh/8_backend1/scripts/trabajo_integrador/src/main/java/com/dh/final_project_backend/entity/DomicilioDTO.java

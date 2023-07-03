@@ -2,7 +2,7 @@ package com.dh.final_project_backend.service;
 
 import com.dh.final_project_backend.entity.Usuario;
 import com.dh.final_project_backend.entity.UsuarioDTO;
-import com.dh.final_project_backend.repository.IUsuarioRepository;
+import com.dh.final_project_backend.repository.UsuarioRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ import java.util.Set;
 public class UsuarioService implements IUsuarioService{
 
     @Autowired
-    IUsuarioRepository usuarioRepository;
+    UsuarioRepository usuarioRepository;
 
     @Autowired
     ObjectMapper mapper;

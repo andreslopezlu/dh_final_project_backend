@@ -2,7 +2,7 @@ package com.dh.final_project_backend.service;
 
 import com.dh.final_project_backend.entity.Turno;
 import com.dh.final_project_backend.entity.TurnoDTO;
-import com.dh.final_project_backend.repository.ITurnoRepository;
+import com.dh.final_project_backend.repository.TurnoRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import java.util.Set;
 public class TurnoService implements ITurnoService{
 
     @Autowired
-    ITurnoRepository turnoRepository;
+    TurnoRepository turnoRepository;
 
     @Autowired
     ObjectMapper mapper;

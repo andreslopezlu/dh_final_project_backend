@@ -2,7 +2,7 @@ package com.dh.final_project_backend.service;
 
 import com.dh.final_project_backend.entity.Odontologo;
 import com.dh.final_project_backend.entity.OdontologoDTO;
-import com.dh.final_project_backend.repository.IOdontologoRepository;
+import com.dh.final_project_backend.repository.OdontologoRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ import java.util.Set;
 public class OdontologoService implements IOdontologoService{
 
     @Autowired
-    IOdontologoRepository odontologoRepository;
+    OdontologoRepository odontologoRepository;
 
     @Autowired
     ObjectMapper mapper;

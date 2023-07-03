@@ -24,6 +24,8 @@ public class UserSecurityService implements UserDetailsService {
         UserEntity userEntity = this.userRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("User " + email + " not found."));
 
+        System.out.println(userEntity);
+
         return User.builder()
                 .username(userEntity.getUsername())
                 .password(userEntity.getPassword())

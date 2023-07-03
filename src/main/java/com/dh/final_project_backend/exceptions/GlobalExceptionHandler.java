@@ -1,7 +1,8 @@
 package com.dh.final_project_backend.exceptions;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     public static final String TRACE = "trace";
 
-    private static final Logger logger = Logger.getLogger(GlobalExceptionHandler.class);
+    private static final Logger logger = LogManager.getLogger(GlobalExceptionHandler.class);
 
     @Value("${reflectoring.trace:false}")
     private boolean printStackTrace;

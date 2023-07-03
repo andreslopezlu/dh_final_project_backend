@@ -45,4 +45,5 @@ public class DomicilioController {
     public ResponseEntity<Set<DomicilioDTO>> buscarTodos(){
         return ResponseEntity.ok(domicilioService.buscarTodos());
     }
+
 }

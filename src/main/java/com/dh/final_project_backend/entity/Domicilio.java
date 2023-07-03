@@ -1,12 +1,12 @@
 package com.dh.final_project_backend.entity;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
+import javax.persistence.*;
 @Entity
 @Table(name="Domicilios")
 @Getter
@@ -16,7 +16,7 @@ import lombok.ToString;
 @JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class Domicilio {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id", nullable=false)
     private Long id;
 
@@ -30,7 +30,7 @@ public class Domicilio {
 
     private Integer codigoPostal;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "domicilio")
+    @OneToOne(mappedBy = "domicilio")
     @JsonIgnore
     private Paciente paciente;
 

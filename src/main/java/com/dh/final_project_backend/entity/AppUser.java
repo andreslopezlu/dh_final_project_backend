@@ -1,38 +1,34 @@
 package com.dh.final_project_backend.entity;
 
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
 
 @Entity
-//@Table(name="AppUser")
-@Getter
-@Setter
-@ToString
-public class AppUser implements UserDetails{
+public class AppUser implements UserDetails {
 
     @Id
     @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
-    private Long id;
-
+    private long id;
+    private String name;
+    private String username;
     private String email;
     private String password;
-
     @Enumerated(EnumType.STRING)
     private AppUserRole appUserRole;
+
 
     public AppUser() {
     }
 
-    public AppUser(String email, String password, AppUserRole appUserRole) {
+    public AppUser(String name, String username, String email, String password, AppUserRole appUserRole) {
+        this.name = name;
+        this.username = username;
         this.email = email;
         this.password = password;
         this.appUserRole = appUserRole;
@@ -41,6 +37,7 @@ public class AppUser implements UserDetails{
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         SimpleGrantedAuthority grantedAuthority = new SimpleGrantedAuthority(appUserRole.name());
+
         return Collections.singletonList(grantedAuthority);
     }
 
@@ -73,4 +70,53 @@ public class AppUser implements UserDetails{
     public boolean isEnabled() {
         return true;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public AppUserRole getAppUserRole() {
+        return appUserRole;
+    }
+
+    public void setAppUserRole(AppUserRole appUserRole) {
+        this.appUserRole = appUserRole;
+    }
+
+    @Override
+    public String toString() {
+        return "AppUser{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", userName='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", appUserRole=" + appUserRole +
+                '}';
+    }
 }
+

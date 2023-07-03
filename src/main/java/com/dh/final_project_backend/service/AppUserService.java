@@ -1,20 +1,25 @@
 package com.dh.final_project_backend.service;
 
-import com.dh.final_project_backend.repository.IUserRepository;
+import com.dh.final_project_backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AppUserService implements UserDetailsService {
 
+    private final UserRepository userRepository;
+
     @Autowired
-    private IUserRepository userRepository;
+    public AppUserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String email){
+
         return userRepository.findByEmail(email).get();
     }
 }
+

@@ -1,13 +1,12 @@
 package com.dh.final_project_backend.entity;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -22,7 +21,7 @@ import java.util.Set;
 public class Paciente {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id", nullable=false)
     private Long id;
 
@@ -30,9 +29,13 @@ public class Paciente {
 
     private String apellido;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "domicilio_id", referencedColumnName = "id")
     private Domicilio domicilio;
+
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "domicilio_id", referencedColumnName = "id")
+//    private Domicilio domicilio;
 
     private Integer dni;
 

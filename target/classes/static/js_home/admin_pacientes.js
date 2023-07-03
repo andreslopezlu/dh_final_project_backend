@@ -165,6 +165,10 @@ window.addEventListener("load", function(){
         </div>
         <p>Domicilio</p>
         <div>
+            <label for="id-domicilio">Id Domicilio</label>
+            <input type="text" name="id-domicilio" id="id-domicilio" autocomplete="off" readonly value=${data.domicilio.id}>
+        </div>
+        <div>
             <label for="domicilio">Calle</label>
             <input type="text" name="calle" id="calle" autocomplete="off" onsubmit="required()" placeholder="Robles" value=${data.domicilio.calle}>
         </div>
@@ -206,6 +210,8 @@ window.addEventListener("load", function(){
         botonesModificar.forEach(boton => {
             boton.addEventListener("click", (e) => {
 
+                clearForm();
+
                 let formularioAgregar = document.querySelector("form.formulario-agregar");
 
                 if(formularioAgregar){
@@ -233,6 +239,7 @@ window.addEventListener("load", function(){
                             apellido: data.apellido == null ? "" : data.apellido,
                             dni: data.dni == null ? "" : data.dni,
                             domicilio: {
+                                id: data.domicilio.id == null ? "" : data.domicilio.id,
                                 calle: data.domicilio.calle == null ? "" : data.domicilio.calle,
                                 numero: data.domicilio.numero == null ? "" : data.domicilio.numero,
                                 provincia: data.domicilio.provincia == null ? "" : data.domicilio.provincia,
@@ -259,6 +266,7 @@ window.addEventListener("load", function(){
         let apellidoPaciente = document.querySelector("input#apellido").value;
         let dniPaciente = document.querySelector("input#dni").value;
 
+        let idDomicilio = document.querySelector("input#id-domicilio").value;
         let calleDomicilio = document.querySelector("input#calle").value;
         let numeroDomicilio = document.querySelector("input#numero").value;
         let provinciaDomicilio = document.querySelector("input#provincia").value;
@@ -273,6 +281,7 @@ window.addEventListener("load", function(){
             apellido: apellidoPaciente,
             dni: dniPaciente,
             domicilio: {
+                id: idDomicilio,
                 calle: calleDomicilio,
                 numero: numeroDomicilio,
                 provincia: provinciaDomicilio,
@@ -313,7 +322,6 @@ window.addEventListener("load", function(){
                     .then((data) => {
                         console.log(data);
                         consultarPacientes();
-                        clearForm();
                     })
                     .catch((error) => {
                         console.error(error);
@@ -428,13 +436,13 @@ function agregarPaciente(){
     
     nuevoPaciente.addEventListener("click", (e) => {
 
+        clearForm();
+
         let formularioModificar = document.querySelector("form.formulario-modificar");
 
             if(formularioModificar){
                 formularioModificar.style.display = "none";
             }
-
-        console.log("aqui estoy")
         
         renderizarFormularioNuevoPaciente();
         aceptarGuardarPaciente();
@@ -450,7 +458,6 @@ function aceptarGuardarPaciente(){
 
         e.preventDefault();
 
-        clearForm();
         let paciente = capturarNuevoPaciente();
 
         let endpointPutPaciente = "/final/pacientes/post";

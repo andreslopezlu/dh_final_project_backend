@@ -1,12 +1,11 @@
 package com.dh.final_project_backend.entity;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 

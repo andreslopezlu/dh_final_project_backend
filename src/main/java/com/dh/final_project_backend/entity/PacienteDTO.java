@@ -26,4 +26,12 @@ public class PacienteDTO {
 
 //    private Set<Turno> turnos;
 
+
+    public PacienteDTO(String nombre, String apellido, Domicilio domicilio, Integer dni, LocalDate fechaAlta) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.domicilio = domicilio;
+        this.dni = dni;
+        this.fechaAlta = fechaAlta;
+    }
 }

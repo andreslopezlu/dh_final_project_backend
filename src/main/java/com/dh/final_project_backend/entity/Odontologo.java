@@ -35,12 +35,11 @@ public class Odontologo {
     public Odontologo() {
     }
 
-//    public Odontologo(String nombre, String apellido, String matricula, Set<Turno> turnos) {
-//        this.nombre = nombre;
-//        this.apellido = apellido;
-//        this.matricula = matricula;
-//        this.turnos = turnos;
-//    }
+    public Odontologo(String nombre, String apellido, String matricula) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.matricula = matricula;
+    }
 //
 //    public Odontologo(Long id, String nombre, String apellido, String matricula, Set<Turno> turnos) {
 //        this.id = id;

@@ -20,4 +20,10 @@ public class OdontologoDTO {
 
 //    private Set<Turno> turnos;
 
+
+    public OdontologoDTO(String nombre, String apellido, String matricula) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.matricula = matricula;
+    }
 }

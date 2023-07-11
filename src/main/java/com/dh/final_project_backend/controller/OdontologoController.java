@@ -4,11 +4,12 @@ import com.dh.final_project_backend.entity.Odontologo;
 import com.dh.final_project_backend.entity.OdontologoDTO;
 import com.dh.final_project_backend.exceptions.GlobalExceptionHandler;
 import com.dh.final_project_backend.service.IOdontologoService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.apache.log4j.Logger;
 
 import java.util.Set;
 
@@ -19,7 +20,7 @@ public class OdontologoController {
     @Autowired
     IOdontologoService odontologoService;
 
-    private static final Logger logger = LogManager.getLogger(GlobalExceptionHandler.class);
+    private static final Logger logger = Logger.getLogger(GlobalExceptionHandler.class);
 
     @PostMapping("/post")
     public ResponseEntity<Odontologo> guardar(@RequestBody OdontologoDTO odontologoDTO){

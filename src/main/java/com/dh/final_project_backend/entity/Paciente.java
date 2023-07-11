@@ -44,14 +44,13 @@ public class Paciente {
     public Paciente() {
     }
 
-//    public Paciente(String nombre, String apellido, Domicilio domicilio, Integer dni, LocalDate fechaAlta, Set<Turno> turnos) {
-//        this.nombre = nombre;
-//        this.apellido = apellido;
-//        this.domicilio = domicilio;
-//        this.dni = dni;
-//        this.fechaAlta = fechaAlta;
-//        this.turnos = turnos;
-//    }
+    public Paciente(String nombre, String apellido, Domicilio domicilio, Integer dni, LocalDate fechaAlta) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.domicilio = domicilio;
+        this.dni = dni;
+        this.fechaAlta = fechaAlta;
+    }
 //
 //    public Paciente(Long id, String nombre, String apellido, Domicilio domicilio, Integer dni, LocalDate fechaAlta, Set<Turno> turnos) {
 //        this.id = id;

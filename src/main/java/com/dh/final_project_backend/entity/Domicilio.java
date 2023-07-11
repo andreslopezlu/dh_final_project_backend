@@ -36,14 +36,13 @@ public class Domicilio {
     public Domicilio() {
     }
 
-//    public Domicilio(String calle, Integer numero, String provincia, String pais, Integer codigoPostal, Paciente paciente) {
-//        this.calle = calle;
-//        this.numero = numero;
-//        this.provincia = provincia;
-//        this.pais = pais;
-//        this.codigoPostal = codigoPostal;
-//        this.paciente = paciente;
-//    }
+    public Domicilio(String calle, Integer numero, String provincia, String pais, Integer codigoPostal) {
+        this.calle = calle;
+        this.numero = numero;
+        this.provincia = provincia;
+        this.pais = pais;
+        this.codigoPostal = codigoPostal;
+    }
 //
 //    public Domicilio(Long id, String calle, Integer numero, String provincia, String pais, Integer codigoPostal, Paciente paciente) {
 //        this.id = id;
